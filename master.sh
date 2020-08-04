@@ -1,9 +1,6 @@
 #!/bin/bash
-dir = $(pwd)
-#Initializing two variables
-echo Press 'm' to enable Monitor mode ans Start execution
+echo Press 'm' to enable Monitor mode and start execution
 echo Press 's' to enable Station mode
-
 echo Choose Input and press ENTER
 read a
 
@@ -12,15 +9,14 @@ read a
 if [ $a == m ] 
 then 
 
-	/sbin/ip -4 -o a | cut -d ' ' -f 2
-	echo Enter Wireles interface which supports monitor mode		
-	read inter	
-	echo enabling monitor mode execute
+	ifconfig	
+	echo enabling monitor mode
 	sleep 1
-	bash scripts/mon.sh $inter
-	sleep 2
-	echo Select channel to False Handshake:
-	bash scripts/deauth.sh $inter	 
+	bash scripts/mon.sh
+	sleep 1
+	bash scripts/deauth.sh
+	sleep 1
+	bash scripts/master.sh
 fi
 if [ $a == s ] 
 then 
